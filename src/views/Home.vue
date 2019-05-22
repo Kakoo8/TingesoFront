@@ -6,10 +6,10 @@
       </el-header>
       <el-row>
         <el-col :span="18">
-          <div class="grid-content bg-purple"></div>
+          <Rack/>
         </el-col>
         <el-col :span="6">
-          <div class="grid-content bg-purple-light"></div>  
+          <FilterRack/>
         </el-col>
       </el-row>
     </el-container>
@@ -20,12 +20,16 @@
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
 import NavBar from '@/components/NavBar.vue'
+import Rack from '@/components/Rack.vue'
+import FilterRack from '@/components/FilterRack.vue'
 
 export default {
   name: 'home',
   components: {
     HelloWorld,
-    NavBar
+    NavBar,
+    Rack,
+    FilterRack
   }
 }
 </script>
