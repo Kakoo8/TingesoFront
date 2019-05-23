@@ -5,3 +5,9 @@
         </div>
     </el-card>
 </template>
+
+<style>
+    .el-card {
+    min-height: 700px;
+  }
+</style>

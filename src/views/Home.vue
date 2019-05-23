@@ -43,27 +43,14 @@ export default {
   }
 
   .el-main {
-      background-color: #E9EEF3;
-      color: #333;
-      text-align: center;
-      height: -webkit-fill-available;
-    }
-    
+    background-color: #E9EEF3;
+    color: #333;
+    text-align: center;
+    height: -webkit-fill-available;
+  }
+
   .el-col {
     border-radius: 4px;
-  }
-  .bg-purple {
-    background: #d3dce6;
-  }
-  .bg-purple-light {
-    background: #e5e9f2;
-  }
-  .grid-content {
-    border-radius: 4px;
-    min-height: 36px;
-  }
-  .row-bg {
-    padding: 10px 0;
-    background-color: #f9fafc;
+    padding: 2%;
   }
 </style>
