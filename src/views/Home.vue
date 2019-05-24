@@ -5,10 +5,10 @@
           <NavBar/>
       </el-header>
       <el-row>
-        <el-col :span="6">
+        <el-col :span="6" id="left-box">
           <FilterRack/>
         </el-col>
-        <el-col :span="18">
+        <el-col :span="18" id="right-box">
           <Rack/>
         </el-col>
       </el-row>
@@ -50,5 +50,11 @@ export default {
   .el-col {
     border-radius: 4px;
     padding: 2%;
+  }
+  #left-box{
+    padding-right: 1vh;
+  }
+  #right-box{
+    padding-left: 1vh;
   }
 </style>
