@@ -1,7 +1,7 @@
 <template>
     <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-        <el-menu-item index="1">Hotel</el-menu-item>
-        <el-menu-item index="3">Reserva</el-menu-item>
+        <el-menu-item index="1">Reservas</el-menu-item>
+        <el-menu-item index="3">Registros</el-menu-item>
     </el-menu>
 </template>
 
