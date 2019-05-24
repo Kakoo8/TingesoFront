@@ -44,10 +44,6 @@
   .el-input__inner{
     width: 220px;
   }
-
-  .el-button--primary {
-    background-color: red !important;
-  }
 </style>
 
 <script>
