@@ -1,5 +1,5 @@
 <template>
-    <el-card class="box-card filters" >
+    <el-card class="box-card filters" id="main-box" >
    
       <el-form ref="form" class="form" :model="form" label-position= "top" label-width="auto" >
         
@@ -73,9 +73,8 @@
 </template>
 
 <style>
-    .el-card {
-    min-height: 700px;
-    max-height: 700px;
+    #main-box {
+    height: 85vh;
   }
   .el-input__inner{
     width: 220px;

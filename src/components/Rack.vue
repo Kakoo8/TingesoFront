@@ -1,5 +1,19 @@
 <template>
-    <el-card class="box-card">
+    <el-card class="box-card" id="main-card">
+        <el-row>
+            <el-col :span="24">
+                <el-card class="box-card" id="rack">
+
+                </el-card> 
+            </el-col>
+        </el-row>
+        <el-row>
+            <el-col :span="24">
+                <el-card class="box-card" id="register">
+
+                </el-card>
+            </el-col>
+        </el-row>
          <el-button type="primary" v-on:click="getAll()" round plain>getAll()</el-button>
          <p>{{rooms}}</p>
     </el-card>
@@ -34,7 +48,11 @@ export default {
 </script>
 
 <style>
-    .el-card {
-    min-height: 700px;
-  }
+    #main-card {
+        height: 85vh;
+    }
+    #rack, #register {
+        height: 30vh;
+    }
+
 </style>
