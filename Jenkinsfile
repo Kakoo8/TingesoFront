@@ -7,7 +7,7 @@ pipeline {
         
     stage('Git') {
       steps {
-         git 'https://github.com/l-pizarro/ci-frontend'
+         git 'https://github.com/Kakoo8/TingesoFront'
       }
     }
         
