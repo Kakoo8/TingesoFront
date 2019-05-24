@@ -18,7 +18,6 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 import NavBar from '@/components/NavBar.vue'
 import Rack from '@/components/Rack.vue'
 import FilterRack from '@/components/FilterRack.vue'
@@ -26,7 +25,6 @@ import FilterRack from '@/components/FilterRack.vue'
 export default {
   name: 'home',
   components: {
-    HelloWorld,
     NavBar,
     Rack,
     FilterRack
