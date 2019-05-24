@@ -1,20 +1,10 @@
 <template>
-    <el-row>
-        <el-row>
-            <el-col :span="24" id="rack">
-                <el-card class="box-card" id="rack-box">
-                    <el-button type="primary" v-on:click="getAll()" round plain>getAll()</el-button>
-                    <p>{{rooms}}</p>    
-                </el-card> 
-            </el-col>
-        </el-row>
-        <el-row>
-            <el-col :span="24">
-                <el-card class="box-card" id="register">
-                </el-card>
-            </el-col>
-        </el-row>
-    </el-row>
+    <el-col :span="24" id="rack">
+        <el-card class="box-card" id="rack-box">
+            <el-button type="primary" v-on:click="getAll()" round plain>getAll()</el-button>
+            <p>{{rooms}}</p>    
+        </el-card> 
+    </el-col>
 </template>
 
 <script>
