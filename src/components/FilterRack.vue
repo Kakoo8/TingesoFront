@@ -87,9 +87,8 @@
     text-align: center; 
   }
   .el-form-item__label{
-    padding-left: 55px; 
-  }
- 
+    padding-left: 55px !important; 
+  } 
 
 </style>
 
