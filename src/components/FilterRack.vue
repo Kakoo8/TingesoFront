@@ -2,17 +2,23 @@
     <el-card class="box-card filters" >
    
       <el-form ref="form" class="form" :model="form" label-position= "top" label-width="auto" >
+        
         <el-form-item  label="Capacidad">
+        
           <div class="block">
 
-          <el-select  v-model="value" clearable placeholder="Seleccione Capacidad" >
-            <el-option>
+            <el-select  v-model="value" clearable placeholder="Seleccione Capacidad" >
+              <el-option>
 
-            </el-option>
-          </el-select>
+              </el-option>
+            </el-select>
+        
           </div>
-          </el-form-item> 
+        
+        </el-form-item> 
+        
         <el-form-item label="Fecha de Inicio">   
+        
           <div class="block">
             
             <el-date-picker
@@ -20,31 +26,50 @@
                 type="date"
                 placeholder="Seleccione fecha">
             </el-date-picker>
-        </div>
+        
+          </div>
+        
         </el-form-item>
+        
         <el-form-item label="Fecha de Termino">
-        <div class="block">
+        
+          <div class="block">
             
             <el-date-picker
                 v-model="value2"
                 type="date"
                 placeholder="Seleccione fecha">
             </el-date-picker>
+        
           </div>
-          </el-form-item>
-          <el-form-item label="">
-            <el-button  type="primary" icon="el-icon-search">Buscar</el-button>
-          </el-form-item>
-          <el-form-item label="Habitaciones">
+        
+        </el-form-item>
+        
+        <el-form-item label="">
+        
+            <div class="block">
+
+              <el-button  type="primary" icon="el-icon-search">Buscar</el-button>
+          
+            </div>
+        
+        </el-form-item>
+        
+        <el-form-item label="Habitaciones">
+        
             <el-card class="box-card">
-                <div v-for="o in 4" :key="o" class="text item">
-                {{'List item ' + o }}
-                </div>
+        
+              <div v-for="o in 4" :key="o" class="text item">
+              {{'List item ' + o }}
+              </div>
+        
             </el-card>
-          </el-form-item>  
-        </el-form>  
+        
+        </el-form-item>  
+      
+      </el-form>  
  
-      </el-card>
+    </el-card>
 </template>
 
 <style>
@@ -57,7 +82,7 @@
   }
   .form{
     text-align: left;
-    padding: 40px; 
+    padding: 5px; 
   }
     .block{
     text-align: center; 
