@@ -5,11 +5,11 @@
           <NavBar/>
       </el-header>
       <el-row>
-        <el-col :span="18">
-          <Rack/>
-        </el-col>
         <el-col :span="6">
           <FilterRack/>
+        </el-col>
+        <el-col :span="18">
+          <Rack/>
         </el-col>
       </el-row>
     </el-container>
