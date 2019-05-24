@@ -1,10 +1,11 @@
 <template>
     <el-card class="box-card">
-        basti lindo
+         <el-button type="primary" v-on:click="getAll()" round plain>getAll()</el-button>
     </el-card>
 </template>
 
 <script>
+
 </script>
 
 <style>
