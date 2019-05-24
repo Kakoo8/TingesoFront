@@ -1,7 +1,7 @@
 <template>
     <el-card class="box-card">
         <div v-for="o in 4" :key="o" class="text item">
-            {{'prueba3' + o }}
+            {{'prueba4' + o }}
         </div>
     </el-card>
 </template>
