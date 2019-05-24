@@ -11,7 +11,7 @@
         <el-date-picker
             v-model="value1"
             type="date"
-            placeholder="Pick a day">
+            placeholder="Fecha Inicio">
         </el-date-picker>
     </div>
     <div class="block">
@@ -19,13 +19,16 @@
         <el-date-picker
             v-model="value2"
             type="date"
-            placeholder="Pick a day">
+            placeholder="Fecha Termino">
         </el-date-picker>
   </div>
         <el-button type="primary" icon="el-icon-search">Buscar</el-button>
-        <div v-for="o in 4" :key="o" class="text item">
+
+        <el-card class="box-card">
+                    <div v-for="o in 4" :key="o" class="text item">
             {{'List item ' + o }}
         </div>
+        </el-card>
     </el-card>
 </template>
 
