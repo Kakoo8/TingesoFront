@@ -41,8 +41,8 @@
     min-height: 700px;
     max-height: 700px;
   }
-  .el-input_inner{
-    width: 220px !important
+  .el-input__inner{
+    width: 220px;
   }
 
   .el-button--primary {
