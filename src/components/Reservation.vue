@@ -9,7 +9,7 @@
                 <el-form-item label="Nombre">
                   <el-input v-model="form.name"></el-input>
                 </el-form-item>
-                <el-form-item label="C.I.">
+                <el-form-item label="Nº documento">
                   <el-input v-model="form.ci"></el-input>
                 </el-form-item>
               </el-row>
@@ -24,7 +24,7 @@
                   end-placeholder="End date"
                 ></el-date-picker>
               </el-form-item>
-              <el-form-item label="habitaciones">
+              <el-form-item label="Habitaciones">
                 <el-select v-model="value" placeholder="Select" id="selector-bedrooms">
                   <el-option
                     v-for="item in options"
@@ -53,14 +53,14 @@ export default {
     data() {
         return {
             form: {
-                name: '',
-                ci: '',
-                date1: '',
-                date2: '',
-                delivery: false,
-                type: [],
-                resource: '',
-                desc: '',
+                id: '',
+                start: '',
+                end: '',
+                finalPrice: '',
+                document_number: '',
+                checkin_name: '',
+                code: '',
+                room_id: '',
             },
             value1: '',
             options: [
@@ -91,6 +91,25 @@ export default {
     methods: {
         onSubmit() {
             console.log('submit!')
+        },
+        agregarReserva() {
+            this.$axios
+                .post('http://157.230.12.110:8080/api/reservations', {
+                    checkin_name: this.form.checkin_name,
+                    lastName: this.lastName,
+                    start: this.form.start,
+                    end: this.form.end,
+                    finalPrice: this.form.finalPrice,
+                    document_number: this.form.document_number,
+                    checkin_name: this.form.checkin_name,
+                    code: this.form.code,
+                    room_id: this.form.room_id,
+                })
+                .then(response => {
+                    console.log(response.data)
+                    this.form.checkin_name = ''
+                    this.form.document_number = ''
+                })
         },
     },
 }
