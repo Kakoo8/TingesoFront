@@ -1,6 +1,6 @@
 <template>
   <el-card class="box-card filters" id="main-box">
-    <el-form ref="form"  label-position="top" label-width="auto">
+    <el-form ref="form" label-position="top" label-width="auto">
       <div id="forms-box">
         <el-form-item label="Tipo de Habitacion">
           <div class="block">
@@ -16,13 +16,23 @@
         </el-form-item>
         <el-form-item label="Fecha de Inicio">
           <div class="block">
-            <el-date-picker v-model="value1" type="date" placeholder="Seleccione fecha"></el-date-picker>
+            <el-date-picker
+              @input="validateEndDate"
+              v-model="task.start_at"
+              type="date"
+              placeholder="Seleccione fecha"
+            ></el-date-picker>
           </div>
         </el-form-item>
 
         <el-form-item label="Fecha de Termino">
           <div class="block">
-            <el-date-picker v-model="value2" type="date" placeholder="Seleccione fecha"></el-date-picker>
+            <el-date-picker
+              v-model="task.end_at"
+              :picker-options="dueDatePickerOptions"
+              type="date"
+              placeholder="Seleccione fecha"
+            ></el-date-picker>
           </div>
         </el-form-item>
       </div>
@@ -77,12 +87,29 @@ export default {
                     return time.getTime() > Date.now()
                 },
             },
+            task: {
+                start_at: new Date(),
+                end_at: new Date(),
+            },
+            dueDatePickerOptions: {
+                disabledDate: this.disabledDueDate,
+            },
             habitaciones: [],
             type_rooms: [],
             value: '',
-            value1: '',
-            value2: '',
+            startValue: '',
+            endValue: '',
         }
+    },
+    methods: {
+        disabledDueDate(time) {
+            return time.getTime() < this.task.start_at
+        },
+        validateEndDate() {
+            if (this.task.start_at > this.task.due_at) {
+                this.task.due_at = this.task.start_at
+            }
+        },
     },
     created() {
         axios.get(`http://157.230.12.110:8080/api/rooms`).then(response => {
