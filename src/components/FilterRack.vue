@@ -1,6 +1,6 @@
 <template>
   <el-card class="box-card filters" id="main-box">
-    <el-form ref="form" class="form" :model="form" label-position="top" label-width="auto">
+    <el-form ref="form"  label-position="top" label-width="auto">
       <div id="forms-box">
         <el-form-item label="Tipo de Habitacion">
           <div class="block">
