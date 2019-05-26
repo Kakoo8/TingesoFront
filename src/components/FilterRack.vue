@@ -46,7 +46,7 @@
         <el-card class="box-card" id="show-rooms">
           <el-table :data="habitaciones" style="width: 100%">
             <div>
-              <el-table-column prop="id" label="N°Habitación" width="auto"></el-table-column>
+              <el-table-column prop="id" label="N° Habitación" width="auto"></el-table-column>
               <el-table-column prop="price" label="Precio" width="auto"></el-table-column>
             </div>
           </el-table>
