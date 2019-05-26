@@ -3,11 +3,11 @@
    
       <el-form ref="form" class="form" :model="form" label-position= "top" label-width="auto" >
         
-        <el-form-item  label="Capacidad">
+        <el-form-item  label="Tipo de Habitacion">
         
           <div class="block">
 
-            <el-select  v-model="value" placeholder="Seleccione Capacidad" >
+            <el-select  v-model="value" placeholder="Seleccione tipo" >
               <el-option v-for="item in type_rooms"
                 :key="item.id"
                 :label="item.name"
@@ -59,20 +59,21 @@
         
         <el-form-item >
             
-            <el-card class="box-card" scrollable >
+            <el-card class="box-card" >
               <el-table
+                
                 :data="habitaciones"
                 style="width: 100%">
                 <el-table-column
                   prop="id"
                   label="N°Habitación"
-                  sortable="true"
+                  
                   width="auto">
                 </el-table-column>
                 <el-table-column
                   prop="price"
                   label="Precio"
-                  sortable
+                  
                   width="auto"
                   >
                 </el-table-column>
@@ -124,9 +125,10 @@ import axios from 'axios';
           disabledDate(time) {
             return time.getTime() > Date.now();
           },
-        habitaciones:[],
-        type_rooms:[],  
+ 
         },
+        habitaciones:[],
+        type_rooms:[], 
         value:'',
         value1: '',
         value2: '',
