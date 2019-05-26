@@ -1,18 +1,11 @@
 <template>
-  <el-card class="box-card filters" id="main-box">
-    <el-form ref="form" class="form" :model="form" label-position="top" label-width="auto">
-      <el-form-item label="Tipo de Habitacion">
-        <div class="block">
-          <el-select v-model="value" placeholder="Seleccione tipo">
-            <el-option
-              v-for="item in type_rooms"
-              :key="item.id"
-              :label="item.name"
-              :value="item.id"
-            ></el-option>
-          </el-select>
-        </div>
-      </el-form-item>
+    <el-card class="box-card filters" id="main-box" >
+   
+      <el-form ref="form"   label-position= "top" label-width="auto" >
+        
+        <el-form-item  label="Tipo de Habitacion">
+        
+          <div class="block">
 
       <el-form-item label="Fecha de Inicio">
         <div class="block">
