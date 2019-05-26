@@ -43,10 +43,12 @@
       </el-form-item>
 
       <el-form-item>
-        <el-card class="box-card">
+        <el-card class="box-card" id="show-rooms">
           <el-table :data="habitaciones" style="width: 100%">
-            <el-table-column prop="id" label="N°Habitación" width="auto"></el-table-column>
-            <el-table-column prop="price" label="Precio" width="auto"></el-table-column>
+            <div>
+              <el-table-column prop="id" label="N°Habitación" width="auto"></el-table-column>
+              <el-table-column prop="price" label="Precio" width="auto"></el-table-column>
+            </div>
           </el-table>
         </el-card>
       </el-form-item>
@@ -55,9 +57,6 @@
 </template>
 
 <style>
-#main-box {
-    height: 85vh;
-}
 .el-input__inner {
     width: 220px;
 }
@@ -68,11 +67,18 @@
 .block {
     text-align: center;
 }
-
+#main-box {
+    height: 85vh;
+}
 #forms-box {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+#show-rooms {
+    overflow-y: scroll;
+    height: 320px !important;
 }
 </style>
 
