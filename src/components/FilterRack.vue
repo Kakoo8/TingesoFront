@@ -1,31 +1,31 @@
 <template>
   <el-card class="box-card filters" id="main-box">
     <el-form ref="form" class="form" :model="form" label-position="top" label-width="auto">
-      <el-form-item label="Tipo de Habitacion">
-        <div class="block">
-          <el-select v-model="value" placeholder="Seleccione tipo">
-            <el-option
-              v-for="item in type_rooms"
-              :key="item.id"
-              :label="item.name"
-              :value="item.id"
-            ></el-option>
-          </el-select>
-        </div>
-      </el-form-item>
+      <div id="forms-box">
+        <el-form-item label="Tipo de Habitacion">
+          <div class="block">
+            <el-select v-model="value" placeholder="Seleccione tipo">
+              <el-option
+                v-for="item in type_rooms"
+                :key="item.id"
+                :label="item.name"
+                :value="item.id"
+              ></el-option>
+            </el-select>
+          </div>
+        </el-form-item>
+        <el-form-item label="Fecha de Inicio">
+          <div class="block">
+            <el-date-picker v-model="value1" type="date" placeholder="Seleccione fecha"></el-date-picker>
+          </div>
+        </el-form-item>
 
-      <el-form-item label="Fecha de Inicio">
-        <div class="block">
-          <el-date-picker v-model="value1" type="date" placeholder="Seleccione fecha"></el-date-picker>
-        </div>
-      </el-form-item>
-
-      <el-form-item label="Fecha de Termino">
-        <div class="block">
-          <el-date-picker v-model="value2" type="date" placeholder="Seleccione fecha"></el-date-picker>
-        </div>
-      </el-form-item>
-
+        <el-form-item label="Fecha de Termino">
+          <div class="block">
+            <el-date-picker v-model="value2" type="date" placeholder="Seleccione fecha"></el-date-picker>
+          </div>
+        </el-form-item>
+      </div>
       <el-form-item>
         <div class="block">
           <el-button type="primary" icon="el-icon-search">Buscar</el-button>
@@ -57,6 +57,12 @@
 }
 .block {
     text-align: center;
+}
+
+#forms-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 </style>
 
