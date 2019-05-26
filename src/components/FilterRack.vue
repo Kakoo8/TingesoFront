@@ -7,7 +7,7 @@
         
           <div class="block">
 
-            <el-select  v-model="value" clearable placeholder="Seleccione Capacidad" >
+            <el-select  v-model="value" placeholder="Seleccione Capacidad" >
               <el-option v-for="item in type_rooms"
                 :key="item.id"
                 :label="item.name"
@@ -66,14 +66,15 @@
                 <el-table-column
                   prop="id"
                   label="N°Habitación"
-                  sortable
+                  sortable="true"
                   width="auto">
                 </el-table-column>
                 <el-table-column
                   prop="price"
                   label="Precio"
+                  sortable
                   width="auto"
-                  sortable>
+                  >
                 </el-table-column>
 
               </el-table>
@@ -124,8 +125,9 @@ import axios from 'axios';
             return time.getTime() > Date.now();
           },
         habitaciones:[],
-        type_room:[],  
+        type_rooms:[],  
         },
+        value:'',
         value1: '',
         value2: '',
         
@@ -138,7 +140,7 @@ import axios from 'axios';
             })
         axios.get(`http://157.230.12.110:8080/api/room_types`)
             .then( response => {
-                this.type_room = response.data
+                this.type_rooms = response.data
             })    
     },
   };
