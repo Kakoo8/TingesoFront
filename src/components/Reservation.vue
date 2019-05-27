@@ -18,7 +18,7 @@
               <el-input placeholder="Nº documento" v-model="form.document_number"></el-input>
               <div class="total-button">
                 <span>Total:</span>
-                <el-button type="primary">Reservar</el-button>
+                <el-button type="primary" @click="postReservation()">Reservar</el-button>
               </div>
             </div>
           </el-col>
@@ -41,7 +41,7 @@
                 <div class="rooms-container" v-for="(list_room, index) in list_rooms" :key="index">
                   <label class="label">Fechas</label>
                   <el-date-picker
-                    v-model="list_room.date"
+                    v-model="list_rooms.date"
                     type="daterange"
                     range-separator="To"
                     start-placeholder="Start date"
@@ -69,6 +69,7 @@
 <script>
 import axios from 'axios'
 export default {
+    props: ['rooms2', 'reservations2'],
     data() {
         return {
             form: {
@@ -115,11 +116,6 @@ export default {
                     this.form.document_number = ''
                 })
         },
-        obtenerHabitaciones() {
-            axios.get(`http://157.230.12.110:8080/api/rooms`).then(response => {
-                this.rooms = response.data
-            })
-        },
         addRoom() {
             this.list_rooms.push({
                 date: '',
@@ -131,10 +127,37 @@ export default {
                 this.list_rooms.splice(-1, 1)
             }
         },
+        postReservation() {
+            for (let i = 0; i < this.list_rooms.length; i++) {
+                axios
+                    .post('http://157.230.12.110:8080/api/reservations', {
+                        start: this.list_rooms.date[0],
+                        end: this.list_rooms.date[1],
+                        final_price: this.final_price,
+                        checkin_name: this.form.checkin_name,
+                        document_number: this.form.document_number,
+                        code: makeid(10),
+                    })
+                    .then(response => console.log(response.data))
+            }
+        },
     },
     created() {
-        this.obtenerHabitaciones()
+        console.log(this.rooms2)
+        console.log(this.reservations2)
     },
+}
+
+function makeid(length) {
+    var result = ''
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+    var charactersLength = characters.length
+    for (var i = 0; i < length; i++) {
+        result += characters.charAt(
+            Math.floor(Math.random() * charactersLength)
+        )
+    }
+    return result
 }
 </script>
 
