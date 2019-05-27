@@ -1,9 +1,7 @@
 <template>
   <el-col :span="24" id="rack">
     <el-card class="box-card" id="rack-box">
-
       <el-button type="primary" v-on:click="getAll()" round > NO PUDE HACER FUNCIONAR EL BOTON  </el-button>
-      
       <p>{{reservas}}</p>
     </el-card>
   </el-col>
