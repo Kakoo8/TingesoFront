@@ -4,16 +4,19 @@
     <el-card class="box-card" id="rack-box">
       <el-row>
         <el-col :span="3">
-          <div class="rackSideBar" v-on:scroll="syncScrolls()">
+          <div class="rackSideBar">
             <div class="title">
               Habitacion
-              <el-row class="roomCodes">
+              <div class="roomCodes" id="roomCodes" v-on:scroll="syncScrollsBySide()">
+              <el-row>
                 <el-col class="roomCode" v-bind:id="index" v-bind:key="index" v-for="(room, index) in rooms">
                   <p>
                     {{room.id}}
                   </p>
+                  <!-- {{room.id}} -->
                 </el-col>
               </el-row>
+              </div>
             </div>
           </div>
         </el-col>
@@ -21,12 +24,15 @@
           <div class="scrolling-wrapper" v-on:scroll="checkLimits()" id="scrollable">
             <div class="date" v-bind:id="index" v-bind:key="index" v-for="(day, index) in days">
               {{format(day)}}
-              <el-row class="roomStates">
-                <el-col class="roomState" v-bind:id="index" v-bind:key="index" v-for="(room, index) in rooms">
-                  <p class="busyText" v-if="isBusy(room, day)">ocupada</p>
-                  <p v-else>vacante</p>
-                </el-col>
-              </el-row>
+              <div class="roomStates" :id="format(day)" v-on:scroll="syncScrollsByRack(day)">
+                <el-row>
+                  <el-col class="roomState" v-bind:id="index" v-bind:key="index" v-for="(room, index) in rooms">
+                    <!-- ocupado -->
+                    <p class="busyText" v-if="isBusy(room, day)">ocupada</p>
+                    <p class="freeText" v-else>vacante</p>
+                  </el-col>
+                </el-row>
+              </div>
             </div>
           </div>
         </el-col>
@@ -135,11 +141,23 @@ import "moment/locale/es"
         button() {
           console.log(document.getElementById('sync2'));
         },
-        syncScrolls() {
-          console.log("sync");
-          var codes = document.getElementsByClassName('');
-          // var states = document.getElementById('roomStates');
-          // codes.scrollTop = states.scrollTop;
+        syncScrollsBySide() {
+          var states = document.getElementsByClassName('roomStates');
+          var scroll = document.getElementById('roomCodes').scrollTop;
+
+          for (let i = 0; i < states.length; i++) {
+            states[i].scrollTop = scroll;
+          }
+        },
+        syncScrollsByRack(day) {
+          var states = document.getElementsByClassName('roomStates');
+          var scroll = document.getElementById(moment(day).format("ddd DD MMMM")).scrollTop;
+          
+          document.getElementById('roomCodes').scrollTop = scroll;
+
+          for (let i = 0; i < states.length; i++) {
+            states[i].scrollTop = scroll;
+          }
         }
     }
   }
@@ -173,6 +191,15 @@ import "moment/locale/es"
 }
 .busyText {
   color: #F56C6C;
+  background-color: #F56C6C;
+}
+.freeText {
+  color: #EBEEF5;
+  background-color: #EBEEF5;
+}
+.roomState {
+  padding-left: 0% !important;
+  padding-right: 0% !important;
 }
 #rack {
     padding-top: 0px;
