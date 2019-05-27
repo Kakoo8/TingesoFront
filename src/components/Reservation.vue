@@ -17,7 +17,7 @@
             <el-col :span="12">
               <el-form-item label="Default">
                 <el-date-picker
-                  v-model="value1"
+                  v-model="date"
                   type="daterange"
                   range-separator="To"
                   start-placeholder="Start date"
@@ -26,12 +26,7 @@
               </el-form-item>
               <el-form-item label="Habitaciones">
                 <el-select v-model="value" placeholder="Select" id="selector-bedrooms">
-                  <el-option
-                    v-for="item in options"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
+                  <el-option v-for="item in rooms" :key="item.id" :label="item.id" :value="item.id"></el-option>
                 </el-select>
               </el-form-item>
               <el-row>
@@ -62,30 +57,9 @@ export default {
                 code: '',
                 room_id: '',
             },
-            value1: '',
-            options: [
-                {
-                    value: 'Option1',
-                    label: 'Option1',
-                },
-                {
-                    value: 'Option2',
-                    label: 'Option2',
-                },
-                {
-                    value: 'Option3',
-                    label: 'Option3',
-                },
-                {
-                    value: 'Option4',
-                    label: 'Option4',
-                },
-                {
-                    value: 'Option5',
-                    label: 'Option5',
-                },
-            ],
+            date: '',
             value: '',
+            rooms: [],
         }
     },
     methods: {
@@ -111,6 +85,16 @@ export default {
                     this.form.document_number = ''
                 })
         },
+        obtenerHabitaciones() {
+            this.$axios(`http://157.230.12.110:8080/api/rooms`).then(
+                response => {
+                    this.rooms = response.data
+                }
+            )
+        },
+    },
+    create() {
+        this.obtenerHabitaciones()
     },
 }
 </script>
