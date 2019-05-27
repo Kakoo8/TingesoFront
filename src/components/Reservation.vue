@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     data() {
         return {
@@ -86,14 +87,14 @@ export default {
                 })
         },
         obtenerHabitaciones() {
-            this.$axios(`http://157.230.12.110:8080/api/rooms`).then(
+            axios.get(`http://157.230.12.110:8080/api/rooms`).then(
                 response => {
                     this.rooms = response.data
                 }
             )
         },
     },
-    create() {
+    created() {
         this.obtenerHabitaciones()
     },
 }
