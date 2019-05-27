@@ -12,7 +12,8 @@
     "gantt-elastic": "^1.0.0",
     "moment": "^2.24.0",
     "vue": "^2.6.10",
-    "vue-router": "^3.0.3"
+    "vue-router": "^3.0.3",
+    "vue-scroll-sync": "^1.0.5"
   },
   "devDependencies": {
     "@vue/cli-service": "^3.7.0",

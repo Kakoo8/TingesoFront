@@ -4,12 +4,14 @@
     <el-card class="box-card" id="rack-box">
       <el-row>
         <el-col :span="3">
-          <div class="rackSideBar">
-            <div class="card">
+          <div class="rackSideBar" v-on:scroll="syncScrolls()">
+            <div class="title">
               Habitacion
-              <el-row class="roomStates" id="sync1">
-                <el-col class="roomState" v-bind:id="index" v-bind:key="index" v-for="(room, index) in rooms">
-                  <p>{{room.id}}</p>
+              <el-row class="roomCodes">
+                <el-col class="roomCode" v-bind:id="index" v-bind:key="index" v-for="(room, index) in rooms">
+                  <p>
+                    {{room.id}}
+                  </p>
                 </el-col>
               </el-row>
             </div>
@@ -17,9 +19,9 @@
         </el-col>
         <el-col :span="21">
           <div class="scrolling-wrapper" v-on:scroll="checkLimits()" id="scrollable">
-            <div class="card" v-bind:id="index" v-bind:key="index" v-for="(day, index) in days">
+            <div class="date" v-bind:id="index" v-bind:key="index" v-for="(day, index) in days">
               {{format(day)}}
-              <el-row class="roomStates" id="sync2">
+              <el-row class="roomStates">
                 <el-col class="roomState" v-bind:id="index" v-bind:key="index" v-for="(room, index) in rooms">
                   <p class="busyText" v-if="isBusy(room, day)">ocupada</p>
                   <p v-else>vacante</p>
@@ -82,6 +84,7 @@ import "moment/locale/es"
     },
     methods: {
         checkLimits() {
+          console.log("limits");
             let a = document.getElementById('scrollable').scrollLeft;
             let b = document.getElementById('scrollable').offsetWidth;
             let c = document.getElementById(9).offsetWidth * this.len;
@@ -131,6 +134,12 @@ import "moment/locale/es"
         },
         button() {
           console.log(document.getElementById('sync2'));
+        },
+        syncScrolls() {
+          console.log("sync");
+          var codes = document.getElementsByClassName('');
+          // var states = document.getElementById('roomStates');
+          // codes.scrollTop = states.scrollTop;
         }
     }
   }
@@ -144,27 +153,23 @@ import "moment/locale/es"
   overflow-y: hidden;
   white-space: nowrap;
 }
-.rackSideBar{
-  margin-left: -4vw; 
-}
-.card {
-  display: inline-block;
-}
-.scrolling-wrapper {
-  -webkit-overflow-scrolling: touch;
-}
 .scrolling-wrapper::-webkit-scrollbar {
   display: none;
 }
-.roomStates::-webkit-scrollbar {
-  display: none;
+.rackSideBar {
+  margin-left: -4vw;
+   white-space: nowrap;
 }
-.card {
-    width: 220px;
+.date, .title {
+  display: inline-block;
+  width: 220px;
 }
-.roomStates {
+.roomStates, .roomCodes {
   height: 50vh;
-  overflow-y: scroll;
+  overflow-y: scroll; 
+}
+.roomStates::-webkit-scrollbar, .roomCodes::-webkit-scrollbar{
+  display: none;
 }
 .busyText {
   color: #F56C6C;
