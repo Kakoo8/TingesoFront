@@ -2,42 +2,65 @@
   <el-row>
     <el-col :span="24">
       <el-card class="box-card">
-        <el-row>
-          <el-form ref="form" :model="form" label-width="120px">
-            <el-col :span="12">
-              <el-row>
-                <el-form-item label="Nombre">
-                  <el-input v-model="form.name"></el-input>
-                </el-form-item>
-                <el-form-item label="Nº documento">
-                  <el-input v-model="form.ci"></el-input>
-                </el-form-item>
-              </el-row>
-            </el-col>
-            <el-col :span="12">
-              <el-form-item label="Default">
-                <el-date-picker
-                  v-model="date"
-                  type="daterange"
-                  range-separator="To"
-                  start-placeholder="Start date"
-                  end-placeholder="End date"
-                ></el-date-picker>
-              </el-form-item>
-              <el-form-item label="Habitacion">
-                <el-select v-model="value" placeholder="Select" id="selector-bedrooms">
-                  <el-option v-for="item in rooms" :key="item.id" :label="item.id" :value="item.id"></el-option>
-                </el-select>
-              </el-form-item>
-              <el-row>
-                <el-col :span="12" id="total">Total</el-col>
-                <el-col :span="12" id="sendButton">
-                  <el-button type="primary" v-on:click="agregarReserva" >Reservar</el-button>
-                </el-col>
-              </el-row>
-            </el-col>
-          </el-form>
-        </el-row>
+        <el-form
+          class="box-card-form"
+          ref="form"
+          :model="form"
+          label-position="top"
+          label-width="auto"
+        >
+          <el-col class="leftCard" :span="12" id="col">
+            <div>
+              <h2>Reserva</h2>
+              <label>Nombre</label>
+              <el-input placeholder="nombre" v-model="form.checkin_name"></el-input>
+              <label>Nº documento</label>
+              <el-input placeholder="Nº documento" v-model="form.document_number"></el-input>
+              <div class="total-button">
+                <span>Total:</span>
+                <el-button type="primary">Reservar</el-button>
+              </div>
+            </div>
+          </el-col>
+          <el-col class="rightCard" :span="12" id="col">
+            <div>
+              <div class="title-buttons">
+                <span>Seleccione Habitación y fechas</span>
+                <div>
+                  <el-button type="success" icon="el-icon-plus" @click="addRoom()" circle></el-button>
+                  <el-button
+                    v-if="list_rooms.length != 1"
+                    type="danger"
+                    icon="el-icon-minus"
+                    @click="removeRoom()"
+                    circle
+                  ></el-button>
+                </div>
+              </div>
+              <div class="scroll-container">
+                <div class="rooms-container" v-for="(list_room, index) in list_rooms" :key="index">
+                  <label class="label">Fechas</label>
+                  <el-date-picker
+                    v-model="list_room.date"
+                    type="daterange"
+                    range-separator="To"
+                    start-placeholder="Start date"
+                    end-placeholder="End date"
+                  ></el-date-picker>
+                  <label class="label">Habitaciones</label>
+                  <el-select v-model="list_room.value" placeholder="Select" id="selector-bedrooms">
+                    <el-option
+                      v-for="item in rooms"
+                      :key="item.id"
+                      :label="item.id"
+                      :value="item.id"
+                    ></el-option>
+                  </el-select>
+                </div>
+              </div>
+            </div>
+          </el-col>
+        </el-form>
       </el-card>
     </el-col>
   </el-row>
@@ -61,6 +84,12 @@ export default {
             date: '',
             value: '',
             rooms: [],
+            list_rooms: [
+                {
+                    date: '',
+                    value: '',
+                },
+            ],
         }
     },
     methods: {
@@ -68,17 +97,17 @@ export default {
             console.log('submit!')
         },
         agregarReserva() {
-            axios
+            this.$axios
                 .post('http://157.230.12.110:8080/api/reservations', {
-                    'checkin_name': this.form.checkin_name,
-                    'lastName': this.lastName,
-                    'start': this.form.start,
-                    'end': this.form.end,
-                    'finalPrice': this.form.finalPrice,
-                    'document_number': this.form.document_number,
-                    'checkin_name': this.form.checkin_name,
-                    'code': this.form.code,
-                    'room_id': this.form.room_id,
+                    checkin_name: this.form.checkin_name,
+                    lastName: this.lastName,
+                    start: this.form.start,
+                    end: this.form.end,
+                    finalPrice: this.form.finalPrice,
+                    document_number: this.form.document_number,
+                    checkin_name: this.form.checkin_name,
+                    code: this.form.code,
+                    room_id: this.form.room_id,
                 })
                 .then(response => {
                     console.log(response.data)
@@ -87,11 +116,20 @@ export default {
                 })
         },
         obtenerHabitaciones() {
-            axios.get(`http://157.230.12.110:8080/api/rooms`).then(
-                response => {
-                    this.rooms = response.data
-                }
-            )
+            axios.get(`http://157.230.12.110:8080/api/rooms`).then(response => {
+                this.rooms = response.data
+            })
+        },
+        addRoom() {
+            this.list_rooms.push({
+                date: '',
+                value: '',
+            })
+        },
+        removeRoom() {
+            if (this.list_rooms.length != 1) {
+                this.list_rooms.splice(-1, 1)
+            }
         },
     },
     created() {
@@ -101,9 +139,160 @@ export default {
 </script>
 
 <style>
-.box-card {
-    height: 25vh;
+.box-card > .el-card__body {
+    padding: 0px;
+    height: 100%;
 }
+
+.box-card-form {
+    height: 100%;
+}
+
+.leftCard {
+    height: 100%;
+    padding: 1.3em !important;
+}
+
+.leftCard > div {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.leftCard > div > h2 {
+    margin-bottom: 0.2em !important;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    margin-top: 0px !important;
+}
+
+.leftCard > div > .el-input {
+    width: 100% !important;
+    margin-bottom: 0.5em;
+}
+
+.leftCard > div > .el-input > input {
+    width: 100% !important;
+}
+
+.leftCard > div > .total-button > button {
+    margin-top: 0.5em;
+    width: 10em;
+}
+.leftCard > div > .total-button {
+    width: 100% !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.leftCard > div > .total-button > span {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.rightCard {
+    height: 100%;
+    padding: 1.3em !important;
+}
+
+.rightCard > div {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.rightCard > div > .title-buttons {
+    margin-bottom: 0.5em !important;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    margin-top: 0px !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.rightCard > div > .title-buttons > span {
+    background-color: #0ab90a;
+    color: white;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+    border-radius: 0.7em;
+    font-weight: bold;
+}
+.rightCard > div > .scroll-container > .rooms-container > .el-input {
+    width: 100% !important;
+    margin-bottom: 0.5em;
+}
+
+.rightCard > div > .scroll-container > .rooms-container > .el-input > input {
+    width: 100% !important;
+}
+
+.rightCard > div > .scroll-container > .rooms-container > button {
+    width: 100% !important;
+    margin-top: 0.5em;
+}
+
+.rightCard > div > .scroll-container > .rooms-container > .el-date-editor {
+    width: 100% !important;
+    margin-bottom: 0.5em;
+}
+
+.rightCard > div > .scroll-container > .rooms-container > .el-select {
+    width: 100% !important;
+}
+
+.rightCard > div > .scroll-container {
+    width: 100%;
+    height: 25vh;
+    overflow-y: scroll;
+}
+.rightCard
+    > div
+    > .scroll-container
+    > .rooms-container
+    > .el-select
+    > .el-input {
+    width: 100% !important;
+}
+
+.rightCard
+    > div
+    > .scroll-container
+    > .rooms-container
+    > .el-select
+    > .el-input
+    > input {
+    width: 100% !important;
+}
+
+.rooms-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    margin-bottom: 0.7em;
+    padding-bottom: 1em;
+    border-bottom: 1px solid #f2f2f2;
+}
+
+.label {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
 #selector-bedrooms {
     width: 350px;
 }
@@ -115,5 +304,12 @@ export default {
 #sendButton {
     padding-left: 25%;
     padding-top: 0%;
+}
+
+#col {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 </style>
