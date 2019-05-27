@@ -183,7 +183,7 @@ import "moment/locale/es"
   width: 220px;
 }
 .roomStates, .roomCodes {
-  height: 50vh;
+  height: 40vh;
   overflow-y: scroll; 
 }
 .roomStates::-webkit-scrollbar, .roomCodes::-webkit-scrollbar{
@@ -206,6 +206,6 @@ import "moment/locale/es"
     padding-bottom: 10px;
 }
 #rack-box {
-    height: 56vh;
+    height: 45vh;
 }
 </style>
