@@ -1,7 +1,9 @@
 <template>
   <div class="home">
     <el-container>
-
+      <el-header>
+        <NavBar/>
+      </el-header>
       <el-main>
       <el-row>
         <el-col :span="6" id="left-box">

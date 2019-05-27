@@ -24,7 +24,7 @@
                   end-placeholder="End date"
                 ></el-date-picker>
               </el-form-item>
-              <el-form-item label="Habitaciones">
+              <el-form-item label="Habitacion">
                 <el-select v-model="value" placeholder="Select" id="selector-bedrooms">
                   <el-option v-for="item in rooms" :key="item.id" :label="item.id" :value="item.id"></el-option>
                 </el-select>
@@ -32,7 +32,7 @@
               <el-row>
                 <el-col :span="12" id="total">Total</el-col>
                 <el-col :span="12" id="sendButton">
-                  <el-button type="primary">Primary</el-button>
+                  <el-button type="primary" v-on:click="agregarReserva" >Reservar</el-button>
                 </el-col>
               </el-row>
             </el-col>
@@ -68,17 +68,17 @@ export default {
             console.log('submit!')
         },
         agregarReserva() {
-            this.$axios
+            axios
                 .post('http://157.230.12.110:8080/api/reservations', {
-                    checkin_name: this.form.checkin_name,
-                    lastName: this.lastName,
-                    start: this.form.start,
-                    end: this.form.end,
-                    finalPrice: this.form.finalPrice,
-                    document_number: this.form.document_number,
-                    checkin_name: this.form.checkin_name,
-                    code: this.form.code,
-                    room_id: this.form.room_id,
+                    'checkin_name': this.form.checkin_name,
+                    'lastName': this.lastName,
+                    'start': this.form.start,
+                    'end': this.form.end,
+                    'finalPrice': this.form.finalPrice,
+                    'document_number': this.form.document_number,
+                    'checkin_name': this.form.checkin_name,
+                    'code': this.form.code,
+                    'room_id': this.form.room_id,
                 })
                 .then(response => {
                     console.log(response.data)
