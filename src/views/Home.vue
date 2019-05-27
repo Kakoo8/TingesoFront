@@ -1,23 +1,24 @@
 <template>
   <div class="home">
     <el-container>
-      <el-header>
-        <NavBar/>
-      </el-header>
+
+      <el-main>
       <el-row>
         <el-col :span="6" id="left-box">
           <FilterRack/>
         </el-col>
         <el-col :span="18" id="right-box">
-          <Rack/>
+          <Rack v-if="dataReady" :rooms="roomsFromDB" :reservations="reservationsFromDB"/>
           <Reservation/>
         </el-col>
       </el-row>
+      </el-main>
     </el-container>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 // @ is an alias to /src
 import NavBar from '@/components/NavBar.vue'
 import Rack from '@/components/Rack.vue'
@@ -32,6 +33,24 @@ export default {
         FilterRack,
         Reservation,
     },
+    data() {
+      return {
+        roomsFromDB: [],
+        reservationsFromDB: [],
+        dataReady: false,
+      }
+    },
+    created() {
+      axios.get('http://157.230.12.110:8080/api/rooms')
+      .then( response => {
+        this.roomsFromDB = response.data;
+        axios.get('http://157.230.12.110:8080/api/reservations')
+        .then(response => {
+          this.reservationsFromDB = response.data;
+          this.dataReady = true;
+        });
+      });
+    }
 }
 </script>
 
@@ -43,7 +62,7 @@ export default {
 }
 
 .el-main {
-    background-color: #e9eef3;
+    background-color: #fcfcfc;
     color: #333;
     text-align: center;
     height: -webkit-fill-available;
