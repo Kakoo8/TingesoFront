@@ -3,16 +3,18 @@
     <el-container>
       <el-main>
         <el-row class="main-row">
-          <el-card class="box-card">
+          <el-card class="box-card" id="carta">
             <div slot="header" class="clearfix">
-              <span>Manual de usuario sistema Hotel</span>
+              <span class="title">Manual de usuario del sistema</span>
             </div>
             <div class="acordeon-container">
               <el-collapse v-model="activeName" accordion>
                 <el-collapse-item title="Rack" name="1">
-                  <div>Consistent with real life: in line with the process and logic of real life, and comply with languages and habits that the users are used to;</div>
-                  <div>Consistent within interface: all elements should be consistent, such as: design style, icons and texts, position of elements, etc.</div>
+                  <div>Esta es la ventana de Rack</div>
                   <img src="../assets/Rack.png" class="image">
+                  <div>Esta ventana permite poder ver de manera más rápida y eficiente el total de habitaciones que se encuentran en el hotel, junto con su estado, ya sea ocupada por un rango de tiempo, o desocupada.</div>
+                  <div>La ventana permite desplazamiento de manera vertical, para poder revisar todas las habitaciones del hotel; y desplazamiento horizontal, para poder ver la dispoción de las piezas en un tiempo mayor.</div>
+                  <div>Como se aprecia en la figura, al encontrarse una habitación reservada en un periodo de tiempo, ésta se puede visualizar de color rojo en la línea de tiempo.</div>
                 </el-collapse-item>
                 <el-collapse-item title="Filtro del rack" name="2">
                   <div>Operation feedback: enable the users to clearly perceive their operations by style updates and interactive effects;</div>
@@ -58,10 +60,6 @@ export default {
     align-content: center;
     justify-content: center;
 }
-.box-card {
-    width: 80%;
-    height: -webkit-fill-available;
-}
 
 .acordeon-container {
     padding-left: 3em;
@@ -69,8 +67,17 @@ export default {
     padding-top: 2em;
 }
 
+#carta {
+    width: 80%;
+    height: -webkit-fill-available;
+}
 img {
     max-width: 70%;
     height: auto;
+}
+
+.title {
+    font-weight: bolder;
+    width: 300px;
 }
 </style>
