@@ -77,9 +77,4 @@ img {
     max-width: 70%;
     height: auto;
 }
-
-.title {
-    font-weight: bolder;
-    width: 300px;
-}
 </style>
