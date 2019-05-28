@@ -249,10 +249,10 @@ function makeid(length) {
 }
 
 .rightCard > div > .title-buttons > span {
-    background-color: #0ab90a;
+    background-color: #409eff;
     color: white;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
+    padding-left: 0.6em;
+    padding-right: 0.6em;
     padding-top: 0.3em;
     padding-bottom: 0.3em;
     border-radius: 0.7em;
