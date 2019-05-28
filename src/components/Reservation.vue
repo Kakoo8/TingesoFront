@@ -99,15 +99,15 @@ export default {
         agregarReserva() {
             this.axios
                 .post('http://157.230.12.110:8080/api/reservations', {
-                    checkin_name: this.form.checkin_name,
+                    checkinName: this.form.checkin_name,
                     lastName: this.lastName,
                     start: this.form.start,
                     end: this.form.end,
                     finalPrice: this.form.finalPrice,
-                    document_number: this.form.document_number,
-                    checkin_name: this.form.checkin_name,
+                    documentNumber: this.form.document_number,
+                    checkinName: this.form.checkin_name,
                     code: this.form.code,
-                    room_id: this.form.room_id,
+                    roomId: this.form.room_id,
                 })
                 .then(response => {
                     console.log(response.data)
@@ -131,19 +131,7 @@ export default {
                 this.rooms = response.data
             })
         },
-        postReservation() {
-            for (let i = 0; i < this.list_rooms.length; i++) {
-                axios.post('http://157.230.12.110:8080/api/reservations', {
-                        start: this.list_rooms.date[0],
-                        end: this.list_rooms.date[1],
-                        finalPrice: this.final_price,
-                        checkinName: this.form.checkin_name,
-                        documentNumber: this.form.document_number,
-                        code: makeid(10),
-                    })
-                    .then(response => console.log(response.data))
-            }
-        },
+
         open() {
             const h = this.$createElement
 
