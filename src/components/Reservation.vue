@@ -3,12 +3,23 @@
     <el-col :span="24">
       <el-card class="box-card">
           <div slot="header" class="clearfix">
-              <span>Reserva</span>
+              <el-row>
+                  <el-col :span="12">
+                      <span>Reserva</span>
+                  </el-col>
+                  <el-col :span="12">
+                      <el-alert v-if="showButton"
+                        :title="dataAlert"
+                        type="success">
+                        </el-alert>
+
+                  </el-col>
+              </el-row>
           </div>
           <div>
-              <el-form ref="form" :model="form" label-width="120px">
+              <el-form ref="form" label-position="left" :model="form" label-width="120px">
                   <el-row>
-                      <el-col :span="9">
+                      <el-col :span="11">
                         <el-form-item label="Nombre">
                             <el-input placeholder="Ingrese nombre cliente" v-model="form.checkinName"></el-input>
                         </el-form-item>
@@ -17,7 +28,7 @@
                             <el-input placeholder="Ingrese número documento" v-model="form.documentNumber"></el-input>
                         </el-form-item>
                       </el-col>
-                      <el-col :span="15">
+                      <el-col :span="13">
                         <el-form-item label="Fechas">
                             <el-date-picker
                             v-model="form.date"
@@ -39,18 +50,16 @@
                                 </el-option>
                             </el-select>
                         </el-form-item>
+                        <el-row>
+                            <el-button type="primary" plain size="small" @click="addRoom()">Añadir Habitación</el-button>
+                            <el-button v-if="showButton" type="success" size="small" @click="postReservation()">Reservar</el-button>
+                        </el-row>
                       </el-col>
-                  </el-row>
-                  <el-row class="button-row">
-                      <el-button type="primary" plain @click="addRoom()">Añadir Habitación</el-button>
-                    <el-button type="primary" @click="postReservation()">Reservar</el-button>
                   </el-row>
               </el-form>
             </div>
       </el-card>
     </el-col>
-    Habitaciones a reservar: {{postRooms}}
-    <hr>
   </el-row>
 </template>
 
@@ -76,7 +85,9 @@ export default {
             date: '',
             value: '',
             postRooms: [],
-            postDates: []
+            postDates: [],
+            showButton: false,
+            dataAlert: "Habitaciones a reservar:" 
         }
     },
     methods: {
@@ -84,8 +95,12 @@ export default {
             console.log('submit!')
         },
         addRoom() {
+            this.showButton = true;
             this.postRooms.push(this.form.roomId);
             this.postDates.push(this.form.date);
+            this.dataAlert += (" " + this.form.roomId + ",");
+            this.form.roomId = null;
+            this.form.date = [];
         },
         postReservation() {
             for (let i = 0; i < this.postRooms.length; i++) {
@@ -114,14 +129,14 @@ export default {
                     .then(response => {
                         console.log(response.data);
                         this.$notify({
-                            title: "Reservation Created",
-                            message: "It's now in the rack.",
+                            title: "Reservación Creada",
+                            message: "Se ha agregado al rack.",
                             type: "success"
                         });
                     })
                     .catch(error => this.$notify.error({
                         title: "Error",
-                        message: "There was an error trying to create the reservation"
+                        message: "Ha ocurrido un error al intentar realizar la reserva."
                     }));
                 }
         },
@@ -200,11 +215,13 @@ function makeid(length) {
 <style>
 .box-card {
     text-align: left;
-    height: 20em;
+    height: 18em;
 }
 /* .box-card > .el-card__body {
     padding: 0px;
     height: 100%;
 } */
-
+.el-card__header {
+    padding: 0px !important;
+}
 </style>
