@@ -120,6 +120,12 @@ export default {
                     this.form.checkin_name = ''
                     this.form.document_number = ''
                 })
+                 .catch(error =>
+            this.$notify.error({
+              title: "Error",
+              message: "No se pudo procesar su solicitud. Error: " + error.message
+            })
+          )
         },
         addRoom() {
             this.list_rooms.push({

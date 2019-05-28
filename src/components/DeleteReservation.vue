@@ -10,14 +10,12 @@
                 <el-form-item label="Numero de reserva">
                     <el-input placeholder="Ingrese el numero de reserva" v-model="document_number"></el-input>
                 </el-form-item>
-                <el-form-item label="Nombre en reserva">
-                    <el-input placeholder="Ingrese el nombre registrado" v-model="chekin_name"></el-input>
-                </el-form-item>
+                
                 
                 <el-form-item >
 
                     
-                    <el-button type="primary" icon="el-icon-delete">Eliminar</el-button>
+                    <el-button type="primary" icon="el-icon-delete" v-on:click="eliminarReserva(document_number)">Eliminar</el-button>
                 
                 </el-form-item>
 
@@ -38,12 +36,42 @@ export default {
 
             document_number: '',
             chekin_name:'',
+            reservations:[],
         }
     },
     methods: {
+        eliminarReserva(document_number) {
+            var data_filter = this.reservations.filter( element => element.documentNumber ==document_number)
+            var id= data_filter.id
+            axios
+                .delete('http://157.230.12.110:8080/api/reservations/{id}', {
+                    
+                })
+                .then(response => {
+                     this.$notify({
+               title: "Reserva Eliminada",
+               message: "La reserva fue eliminada correctamente",
+               type: "success"
+             });
+
+                })
+                 .catch(error =>
+            this.$notify.error({
+              title: "Error",
+              message: "No se pudo procesar su solicitud. Error: " + error.message
+            })
+          )
+        },
         onSubmit() {
             console.log('submit!')
         },
     },    
+    created(){
+              
+            axios.get(`http://157.230.12.110:8080/api/reservations`).then(response => {
+                this.reservations = response.data
+            })
+        
+    }
 }
 </script>
