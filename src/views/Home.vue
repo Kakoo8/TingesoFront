@@ -1,9 +1,6 @@
 <template>
   <div class="home">
     <el-container>
-      <el-header>
-        <NavBar/>
-      </el-header>
       <el-main>
         <el-row>
           <el-col :span="6" id="left-box">
@@ -25,8 +22,6 @@
 
 <script>
 import axios from 'axios'
-// @ is an alias to /src
-import NavBar from '@/components/NavBar.vue'
 import Rack from '@/components/Rack.vue'
 import FilterRack from '@/components/FilterRack.vue'
 import Reservation from '@/components/Reservation.vue'
@@ -34,7 +29,6 @@ import Reservation from '@/components/Reservation.vue'
 export default {
     name: 'home',
     components: {
-        NavBar,
         Rack,
         FilterRack,
         Reservation,
