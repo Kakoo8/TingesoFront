@@ -78,7 +78,7 @@ export default {
                 date: [],
                 finalPrice: 0,
                 documentNumber: '',
-                checkinName: '',
+                checkInName: '',
                 code: '',
                 roomId: null
             },
@@ -104,10 +104,10 @@ export default {
             this.form.date = [];
         },
         postReservation() {
+            var code = makeid(10);
             for (let i = 0; i < this.postRooms.length; i++) {
                 let start = moment(this.postDates[i][0]);
                 let end = moment(this.postDates[i][1]);
-                let code = makeid(10);
                 axios({
                     method: "POST",
                     url: "http://157.230.12.110:8080/api/reservations/",
@@ -115,9 +115,9 @@ export default {
                         start: start,
                         end: end,
                         finalPrice: this.finalPrice,
-                        checkinName: this.form.checkin_name,
+                        checkInName: this.form.checkInName,
                         lastName: this.lastName,
-                        documentNumber: this.form.document_number,
+                        documentNumber: this.form.documentNumber,
                         code: code,
                         roomId: this.postRooms[i],
                     },
