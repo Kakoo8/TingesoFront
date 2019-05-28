@@ -133,13 +133,12 @@ export default {
         },
         postReservation() {
             for (let i = 0; i < this.list_rooms.length; i++) {
-                axios
-                    .post('http://157.230.12.110:8080/api/reservations', {
+                axios.post('http://157.230.12.110:8080/api/reservations', {
                         start: this.list_rooms.date[0],
                         end: this.list_rooms.date[1],
-                        final_price: this.final_price,
-                        checkin_name: this.form.checkin_name,
-                        document_number: this.form.document_number,
+                        finalPrice: this.final_price,
+                        checkinName: this.form.checkin_name,
+                        documentNumber: this.form.document_number,
                         code: makeid(10),
                     })
                     .then(response => console.log(response.data))
