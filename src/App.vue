@@ -1,11 +1,11 @@
 <template>
   <div id="app">
-    <el-container>
+    
       <el-header>
         <NavBar/>
       </el-header>
       <router-view/>
-    </el-container>
+    
   </div>
 </template>
 

@@ -6,10 +6,10 @@
     @select="handleSelect"
   >
     <el-menu-item index="1">
-      <router-link to="/">Reservas</router-link>
+      <router-link to="/" style="text-decoration:none">Reservas</router-link>
     </el-menu-item>
     <el-menu-item index="2">
-      <router-link to="/delete">Registros</router-link>
+      <router-link to="/delete" style="text-decoration:none">Eliminar Reserva</router-link>
     </el-menu-item>
   </el-menu>
 </template>
