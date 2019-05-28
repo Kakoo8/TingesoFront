@@ -62,11 +62,17 @@
         </el-form>
       </el-card>
     </el-col>
+    <el-button v-on:click="post()">HEADERS</el-button>
+    <el-button v-on:click="post2()">NO HEADERS</el-button>
+
   </el-row>
 </template>
 
 <script>
 import axios from 'axios'
+import moment from 'moment'
+import "moment/locale/es"
+
 export default {
     props: ['rooms2', 'reservations2'],
     data() {
@@ -140,12 +146,66 @@ export default {
                 message: h('i', { style: 'color: cyan' }, 'This is a reminder'),
             })
         },
+        post() {
+            let today = moment();
+            let tomorrow = today.clone().add(1, 'day');
+            axios({
+                method: "POST",
+                url: "http://157.230.12.110:8080/api/reservations/",
+                data: {
+                    start: today,
+                    end: tomorrow,
+                    finalPrice: 100000,
+                    document_number: '192642264',
+                    checkin_name: 'Leandro Pizarro',
+                    code: 'L0BPJ530HB',
+                    room_id: 1
+                },
+                config: {
+                    headers: {
+                        "Content-Type": "application/json"
+                        }
+                }
+            })
+            .then(response => {
+                this.$notify({
+                title: "Reservation Created",
+                message: "It's now in the rack.",
+                type: "success"
+                });
+            })
+            .catch(error => this.$notify.error({
+                title: "Error",
+                message: "There was an error trying to create the reservation"
+            }));
+        },
+        post2() {
+            let today = moment();
+            let tomorrow = today.clone().add(1, 'day');
+            axios.post(
+                'http://157.230.12.110:8080/api/reservations/',
+                {
+                    start: today,
+                    end: tomorrow,
+                    finalPrice: 100000,
+                    document_number: '192642264',
+                    checkin_name: 'Leandro Pizarro',
+                    code: 'L0BPJ530HB',
+                    room_id: 1
+                }
+            )
+            .then(response => console.log(response.data))
+            .catch(
+                error => this.$notify.error({
+                title: "Error",
+                message: "There was an error trying to create the reservation"
+            })
+            );
+        }
     },
     created() {
-        console.log(this.rooms2)
-        console.log(this.reservations2)
         this.obtenerHabitaciones()
-    },
+    }
 }
 
 function makeid(length) {

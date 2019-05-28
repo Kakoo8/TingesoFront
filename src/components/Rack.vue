@@ -90,7 +90,6 @@ import "moment/locale/es"
     },
     methods: {
         checkLimits() {
-          console.log("limits");
             let a = document.getElementById('scrollable').scrollLeft;
             let b = document.getElementById('scrollable').offsetWidth;
             let c = document.getElementById(9).offsetWidth * this.len;
