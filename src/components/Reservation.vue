@@ -127,6 +127,11 @@ export default {
                 this.list_rooms.splice(-1, 1)
             }
         },
+        obtenerHabitaciones() {
+            axios.get(`http://157.230.12.110:8080/api/rooms`).then(response => {
+                this.rooms = response.data
+            })
+        },
         postReservation() {
             for (let i = 0; i < this.list_rooms.length; i++) {
                 axios
@@ -145,6 +150,7 @@ export default {
     created() {
         console.log(this.rooms2)
         console.log(this.reservations2)
+        this.obtenerHabitaciones()
     },
 }
 
