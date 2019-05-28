@@ -38,13 +38,13 @@
       </div>
       <el-form-item>
         <div class="block">
-          <el-button type="primary" icon="el-icon-search">Buscar</el-button>
+          <el-button type="primary" icon="el-icon-search" v-on:click="filterbyType(value)">Buscar</el-button>
         </div>
       </el-form-item>
 
       <el-form-item>
         <el-card class="box-card" id="show-rooms">
-          <el-table :data="habitaciones" style="width: 100%">
+          <el-table :data="filtered" style="width: 100%">
             <div>
               <el-table-column prop="id" label="N° Habitación" width="auto"></el-table-column>
               <el-table-column prop="price" label="Precio" width="auto"></el-table-column>
@@ -102,6 +102,7 @@ export default {
             },
             habitaciones: [],
             type_rooms: [],
+            filtered:[],
             value: '',
             startValue: '',
             endValue: '',
@@ -116,10 +117,18 @@ export default {
                 this.task.due_at = this.task.start_at
             }
         },
+        filterbyType(value){
+          var data_filter = this.habitaciones.filter( element => element.roomTypeId ==value)
+          console.log(data_filter)
+          this.filtered=data_filter
+          console.log("aprete el boton")
+          
+        },
     },
     created() {
         axios.get(`http://157.230.12.110:8080/api/rooms`).then(response => {
             this.habitaciones = response.data
+            this.filtered=this.habitaciones
         })
         axios
             .get(`http://157.230.12.110:8080/api/room_types`)
