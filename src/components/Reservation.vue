@@ -87,7 +87,8 @@ export default {
             postRooms: [],
             postDates: [],
             showButton: false,
-            dataAlert: "Habitaciones a reservar:" 
+            dataAlert: "Habitaciones a reservar:" ,
+            load: true
         }
     },
     methods: {
@@ -127,12 +128,15 @@ export default {
                     }
                     })
                     .then(response => {
-                        console.log(response.data);
+                        this.$emit('renderSon', response.data);
                         this.$notify({
                             title: "Reservación Creada",
-                            message: "Se ha agregado al rack.",
+                            message: "Se ha generado la reserva. Su código es: " + response.data.code + ".",
                             type: "success"
                         });
+                        this.dataAlert = "Habitaciones a reservar:";
+                        this.postRooms = [];
+                        this.postDates = [];
                     })
                     .catch(error => this.$notify.error({
                         title: "Error",
@@ -223,5 +227,9 @@ function makeid(length) {
 } */
 .el-card__header {
     padding: 0px !important;
+}
+.el-notification,
+.right {
+  font-family: "Avenir", Helvetica, Arial, sans-serif !important;
 }
 </style>

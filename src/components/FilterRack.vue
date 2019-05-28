@@ -67,12 +67,12 @@
       </el-form-item>
 
       <el-form-item>
-        <el-card class="box-card" id="show-rooms">
-          <el-table :data="filtered" style="width: 100%">
+        <el-card class="box-card">
+          <el-table :data="filtered" style="width: 100%" id="show-rooms">
             <div>
               <el-table-column prop="capacity" label="Capacidad" width="auto"></el-table-column>
-              <el-table-column prop="price" label="Precio" width="auto"></el-table-column>
-              <el-table-column prop="id" label="N° Habitación" width="auto"></el-table-column>
+              <el-table-column prop="price" label="Precio" width="65"></el-table-column>
+              <el-table-column prop="id" label="Código" width="70"></el-table-column>
             </div>
           </el-table>
         </el-card>
@@ -202,3 +202,9 @@ export default {
     },
 }
 </script>
+
+<style scoped>
+#show-rooms {
+  height: 5vh;
+}
+</style>

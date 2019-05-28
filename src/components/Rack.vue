@@ -13,7 +13,6 @@
                   <p>
                     {{room.id}}
                   </p>
-                  <!-- {{room.id}} -->
                 </el-col>
               </el-row>
               </div>
@@ -27,7 +26,6 @@
               <div class="roomStates" :id="format(day)" v-on:scroll="syncScrollsByRack(day)">
                 <el-row>
                   <el-col class="roomState" v-bind:id="index" v-bind:key="index" v-for="(room, index) in rooms">
-                    <!-- ocupado -->
                     <p class="busyText" v-if="isBusy(room, day)">ocupada</p>
                     <p class="freeText" v-else>vacante</p>
                   </el-col>
@@ -50,6 +48,7 @@ import "moment/locale/es"
     props: [
         'rooms',
         'reservations',
+        'load'
     ],
     data() {
       return {
@@ -59,7 +58,8 @@ import "moment/locale/es"
           returnScroll: 0,
           days: [moment()],
           myReservations: this.reservations,
-          dictionary: {}
+          dictionary: {},
+          myRooms: this.rooms,
       }
     },
     created() {
@@ -158,6 +158,14 @@ import "moment/locale/es"
             states[i].scrollTop = scroll;
           }
         }
+    },
+    computed: {
+      renderComponent: function () {
+        if (this.load == true) {
+          this.forceRerender();
+        }
+        return this.load;
+      }
     }
   }
   var s1 = document.getElementById('sync1');

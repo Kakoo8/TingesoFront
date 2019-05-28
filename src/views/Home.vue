@@ -7,11 +7,12 @@
             <FilterRack/>
           </el-col>
           <el-col :span="18" id="right-box">
-            <Rack v-if="dataReady" :rooms="roomsFromDB" :reservations="reservationsFromDB"/>
+            <Rack v-if="dataReady" :rooms="roomsFromDB" :reservations="reservationsFromDB" :load="loadAgain"/>
             <Reservation
               v-if="dataReady"
               :rooms2="roomsFromDB"
               :reservations2="reservationsFromDB"
+              @renderSon="onChildrenderSon"
             />
           </el-col>
         </el-row>
@@ -38,6 +39,7 @@ export default {
             roomsFromDB: [],
             reservationsFromDB: [],
             dataReady: false,
+            loadAgain: false
         }
     },
     created() {
@@ -51,7 +53,16 @@ export default {
                 })
         })
     },
+    methods: {
+      onChildrenderSon(value) {
+        console.log("HOLA");
+        this.reservationsFromDB.push(value);
+        this.loadAgain = true;
+        console.log("CHAO");
+        }
+    }
 }
+
 </script>
 
 <style>
