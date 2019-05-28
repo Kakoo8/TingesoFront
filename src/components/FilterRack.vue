@@ -8,7 +8,7 @@
               <el-option
                 v-for="item in type_rooms"
                 :key="item.id"
-                :label="item.id"
+                :label="item.name"
                 :value="item.id"
               ></el-option>
             </el-select>
