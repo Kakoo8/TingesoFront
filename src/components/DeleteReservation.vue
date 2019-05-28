@@ -15,7 +15,11 @@
                 <el-form-item >
 
                     
+<<<<<<< HEAD
                     <el-button type="primary" icon="el-icon-delete" v-on:click="eliminarReserva(numberoReserva)">Eliminar</el-button>
+=======
+                    <el-button type="primary" icon="el-icon-delete" v-on:click="eliminarReserva(numeroReserva)">Eliminar</el-button>
+>>>>>>> 62f37f30c96c1a771bdee8f4f4d47d3c9e7e01c3
                 
                 </el-form-item>
 
@@ -40,7 +44,11 @@ export default {
         }
     },
     methods: {
+<<<<<<< HEAD
         eliminarReserva(document_number) {
+=======
+        eliminarReserva(numeroReserva) {
+>>>>>>> 62f37f30c96c1a771bdee8f4f4d47d3c9e7e01c3
 
             axios
                 .delete('http://157.230.12.110:8080/api/reservations/'+{numeroReserva}, {
