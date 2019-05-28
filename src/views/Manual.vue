@@ -2,7 +2,7 @@
   <div class="manual">
     <el-container>
       <el-main>
-        <el-row class="main-row">
+        <el-row class="main-row" id="main">
           <el-card class="box-card" id="carta">
             <div slot="header" class="clearfix">
               <span class="title">Manual de usuario del sistema</span>
@@ -10,16 +10,18 @@
             <div class="acordeon-container">
               <el-collapse v-model="activeName" accordion>
                 <el-collapse-item title="Rack" name="1">
-                  <div>Esta es la ventana de Rack</div>
+                  <div>Ésta es la ventana de Rack</div>
                   <img src="../assets/Rack.png" class="image">
                   <div>Esta ventana permite poder ver de manera más rápida y eficiente el total de habitaciones que se encuentran en el hotel, junto con su estado, ya sea ocupada por un rango de tiempo, o desocupada.</div>
                   <div>La ventana permite desplazamiento de manera vertical, para poder revisar todas las habitaciones del hotel; y desplazamiento horizontal, para poder ver la dispoción de las piezas en un tiempo mayor.</div>
                   <div>Como se aprecia en la figura, al encontrarse una habitación reservada en un periodo de tiempo, ésta se puede visualizar de color rojo en la línea de tiempo.</div>
                 </el-collapse-item>
                 <el-collapse-item title="Filtro del rack" name="2">
-                  <div>Operation feedback: enable the users to clearly perceive their operations by style updates and interactive effects;</div>
-                  <div>Visual feedback: reflect current state by updating or rearranging elements of the page.</div>
+                  <div>Ésta es la ventana de Rack</div>
                   <img src="../assets/FiltroRack.png" class="image">
+                  <div>Esta ventana permite realizar un filtrado dentro de las habitaciones .</div>
+                  <div>La ventana permite desplazamiento de manera vertical, para poder revisar todas las habitaciones del hotel; y desplazamiento horizontal, para poder ver la dispoción de las piezas en un tiempo mayor.</div>
+                  <div>Como se aprecia en la figura, al encontrarse una habitación reservada en un periodo de tiempo, ésta se puede visualizar de color rojo en la línea de tiempo.</div>
                 </el-collapse-item>
                 <el-collapse-item title="Reservas" name="3">
                   <div>Simplify the process: keep operating process simple and intuitive;</div>
@@ -54,7 +56,7 @@ export default {
 </script>
 
 <style>
-.main-row {
+#main {
     display: flex;
     flex-direction: row;
     align-content: center;
