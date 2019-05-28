@@ -17,7 +17,7 @@
               <label>Nº documento</label>
               <el-input placeholder="Nº documento" v-model="form.document_number"></el-input>
               <div class="total-button">
-                <el-button type="primary" @click="postReservation()">Reservar</el-button>
+                <el-button type="primary" @click="agregarReserva()">Reservar</el-button>
               </div>
             </div>
           </el-col>
@@ -150,11 +150,7 @@ export default {
 
             this.$notify({
                 title: 'Reserva realizada',
-                message: h(
-                    'i',
-                    { style: 'color: green' },
-                    'This is a reminder'
-                ),
+                message: h('i', { style: 'color: cyan' }, 'This is a reminder'),
             })
         },
     },
