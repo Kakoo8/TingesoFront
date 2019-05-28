@@ -97,7 +97,7 @@ export default {
             console.log('submit!')
         },
         agregarReserva() {
-            this.$axios
+            this.axios
                 .post('http://157.230.12.110:8080/api/reservations', {
                     checkin_name: this.form.checkin_name,
                     lastName: this.lastName,

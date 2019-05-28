@@ -8,13 +8,37 @@
               <el-option
                 v-for="item in type_rooms"
                 :key="item.id"
-                :label="item.name"
+                :label="item.id"
                 :value="item.id"
               ></el-option>
             </el-select>
           </div>
         </el-form-item>
-        <el-form-item label="Fecha de Inicio">
+        <el-form-item label="Capacidad">
+          <div class="block">
+            <el-select v-model="capacidad" placeholder="Seleccione capacidad">
+              <el-option
+                v-for="item in capacidades"
+                :key="item.value"
+                :label="item.value"
+                :value="item.value"
+              ></el-option>
+            </el-select>
+          </div>
+        </el-form-item>
+        <el-form-item label="Precio">
+          <div class="block">
+            <el-select v-model="precio" placeholder="Seleccione precio">
+              <el-option
+                v-for="item in precios"
+                :key="item.value"
+                :label="item.value"
+                :value="item.value"
+              ></el-option>
+            </el-select>
+          </div>
+        </el-form-item>
+        <!--<el-form-item label="Fecha de Inicio">
           <div class="block">
             <el-date-picker
               @input="validateEndDate"
@@ -34,11 +58,11 @@
               placeholder="Seleccione fecha"
             ></el-date-picker>
           </div>
-        </el-form-item>
+        </el-form-item>-->
       </div>
       <el-form-item>
         <div class="block">
-          <el-button type="primary" icon="el-icon-search" v-on:click="filterbyType(value)">Buscar</el-button>
+          <el-button type="primary" icon="el-icon-search" v-on:click="filterbyType(value,capacidad,precio)">Buscar</el-button>
         </div>
       </el-form-item>
 
@@ -46,8 +70,9 @@
         <el-card class="box-card" id="show-rooms">
           <el-table :data="filtered" style="width: 100%">
             <div>
-              <el-table-column prop="id" label="N° Habitación" width="auto"></el-table-column>
+              <el-table-column prop="capacity" label="Capacidad" width="auto"></el-table-column>
               <el-table-column prop="price" label="Precio" width="auto"></el-table-column>
+              <el-table-column prop="id" label="N° Habitación" width="auto"></el-table-column>
             </div>
           </el-table>
         </el-card>
@@ -102,6 +127,37 @@ export default {
             },
             habitaciones: [],
             type_rooms: [],
+            precios:[{
+              value: '15000'
+              
+            }, {
+              value: '20000'
+            }, {
+              value: '60000'
+            }, {
+              value: '80000'
+            }, {
+              value: '90000'
+            }],
+
+
+
+
+            
+            precio:'',
+            capacidades:[{
+              value: '2'
+              
+            }, {
+              value: '3'
+            }, {
+              value: '4'
+            }, {
+              value: '5'
+            }, {
+              value: '10'
+            }],
+            capacidad:'',
             filtered:[],
             value: '',
             startValue: '',
@@ -117,24 +173,32 @@ export default {
                 this.task.due_at = this.task.start_at
             }
         },
-        filterbyType(value){
+        filterbyType(value,capacidad,precio){
           var data_filter = this.habitaciones.filter( element => element.roomTypeId ==value)
+          data_filter = data_filter.filter( element => element.roomTypeId <=precio)
+          data_filter = data_filter.filter( element => element.roomTypeId >=capacidad)
           console.log(data_filter)
           this.filtered=data_filter
           console.log("aprete el boton")
           
         },
+
+ 
+     
     },
     created() {
         axios.get(`http://157.230.12.110:8080/api/rooms`).then(response => {
             this.habitaciones = response.data
+            
             this.filtered=this.habitaciones
+            
         })
         axios
             .get(`http://157.230.12.110:8080/api/room_types`)
             .then(response => {
                 this.type_rooms = response.data
             })
+          
     },
 }
 </script>
