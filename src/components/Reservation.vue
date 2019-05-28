@@ -17,7 +17,6 @@
               <label>Nº documento</label>
               <el-input placeholder="Nº documento" v-model="form.document_number"></el-input>
               <div class="total-button">
-                <span>Total:</span>
                 <el-button type="primary" @click="postReservation()">Reservar</el-button>
               </div>
             </div>
@@ -47,7 +46,7 @@
                     start-placeholder="Start date"
                     end-placeholder="End date"
                   ></el-date-picker>
-                  <label class="label">Habitaciones</label>
+                  <label class="label">Habitación</label>
                   <el-select v-model="list_room.value" placeholder="Select" id="selector-bedrooms">
                     <el-option
                       v-for="item in rooms"
@@ -146,6 +145,18 @@ export default {
                     .then(response => console.log(response.data))
             }
         },
+        open() {
+            const h = this.$createElement
+
+            this.$notify({
+                title: 'Reserva realizada',
+                message: h(
+                    'i',
+                    { style: 'color: green' },
+                    'This is a reminder'
+                ),
+            })
+        },
     },
     created() {
         console.log(this.rooms2)
@@ -168,6 +179,9 @@ function makeid(length) {
 </script>
 
 <style>
+.box-card {
+    height: 18em;
+}
 .box-card > .el-card__body {
     padding: 0px;
     height: 100%;
@@ -283,7 +297,7 @@ function makeid(length) {
 
 .rightCard > div > .scroll-container {
     width: 100%;
-    height: 25vh;
+    height: 16vh;
     overflow-y: scroll;
 }
 .rightCard
