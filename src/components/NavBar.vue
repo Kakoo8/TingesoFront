@@ -11,6 +11,9 @@
     <el-menu-item index="2">
       <router-link to="/delete" style="text-decoration:none">Eliminar Reserva</router-link>
     </el-menu-item>
+    <el-menu-item index="3">
+      <router-link to="/manual" style="text-decoration:none">Manual de uso</router-link>
+    </el-menu-item>
   </el-menu>
 </template>
 
