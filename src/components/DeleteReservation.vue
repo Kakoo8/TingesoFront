@@ -8,14 +8,14 @@
                 <el-row>
 
                 <el-form-item label="Numero de reserva">
-                    <el-input placeholder="Ingrese el numero de reserva" v-model="document_number"></el-input>
+                    <el-input placeholder="Ingrese el numero de reserva" v-model="numeroReserva"></el-input>
                 </el-form-item>
                 
                 
                 <el-form-item >
 
                     
-                    <el-button type="primary" icon="el-icon-delete" v-on:click="eliminarReserva(document_number)">Eliminar</el-button>
+                    <el-button type="primary" icon="el-icon-delete" v-on:click="eliminarReserva(numeroReserva)">Eliminar</el-button>
                 
                 </el-form-item>
 
@@ -34,17 +34,16 @@ export default {
     data() {
         return {
 
-            document_number: '',
-            chekin_name:'',
+           numeroReserva: '',
+            
             reservations:[],
         }
     },
     methods: {
-        eliminarReserva(document_number) {
-            var data_filter = this.reservations.filter( element => element.documentNumber ==document_number)
-            var id= data_filter.id
+        eliminarReserva(numeroReserva) {
+
             axios
-                .delete('http://157.230.12.110:8080/api/reservations/{id}', {
+                .delete('http://157.230.12.110:8080/api/reservations/'+{numeroReserva}, {
                     
                 })
                 .then(response => {
