@@ -164,7 +164,7 @@ import "moment/locale/es"
   var s2 = document.getElementById('sync2');
 </script>
 
-<style>
+<style scope>
 .scrolling-wrapper {
   overflow-x: scroll;
   overflow-y: hidden;
@@ -174,6 +174,7 @@ import "moment/locale/es"
   display: none;
 }
 .rackSideBar {
+  text-align: center;
   margin-left: -4vw;
    white-space: nowrap;
 }
