@@ -13,8 +13,10 @@
                 
                 
                 <el-form-item >
-                    <el-button type="primary" icon="el-icon-delete" v-on:click="eliminarReserva(numberoReserva)">Eliminar</el-button>
-    
+
+                    
+                    <el-button type="primary" icon="el-icon-delete" v-on:click="eliminarReserva(numeroReserva)">Eliminar</el-button>
+                
                 </el-form-item>
 
                 </el-row>
@@ -39,6 +41,7 @@ export default {
     },
     methods: {
         eliminarReserva(numeroReserva) {
+
             axios
                 .delete('http://157.230.12.110:8080/api/reservations/'+{numeroReserva}, {
                     

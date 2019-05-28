@@ -13,15 +13,15 @@
                   <div>Ésta es la ventana de Rack</div>
                   <img src="../assets/Rack.png" class="image">
 
-                  <div>Esta ventana permite poder ver de manera más rápida y eficiente el total de habitaciones que se encuentran en el hotel, junto con su estado, ya sea ocupada por un rango de tiempo, o desocupada.</div>
-                  <div>La ventana permite desplazamiento de manera vertical, para poder revisar todas las habitaciones del hotel; y desplazamiento horizontal, para poder ver la dispoción de las piezas en un tiempo mayor.</div>
-                  <div>Como se aprecia en la figura, al encontrarse una habitación reservada en un periodo de tiempo, ésta se puede visualizar de color rojo en la línea de tiempo.</div>
+                  <div>Esta ventana permite poder ver de manera más rápida y eficiente el total de habitaciones que se encuentran en el hotel y su estado en el tiempo, el que puede ser ocupado o desocupado.</div>
+                  <div>La ventana permite desplazamiento de manera vertical, para poder revisar todas las habitaciones del hotel; y desplazamiento horizontal, para poder ver la disposición de las piezas en el futuro.</div>
+                  <div>Como se aprecia en la figura, al encontrarse una habitación reservada , ésta se puede visualizar de color rojo en la línea de tiempo durante el periodo que dura la reserva.</div>
                 </el-collapse-item>
                 <el-collapse-item title="Filtro del rack" name="2">
                   <div>Ésta es la ventana de Rack</div>
                   <img src="../assets/FiltroRack.png" class="image">
                   <div>Esta ventana permite realizar un filtrado dentro de las habitaciones, según el tipo de la habitación, su capacidad y su precio.</div>
-                  <div>Una vez realizado el filtrado anterior, en la parte inferior del filtro se pueden ver las sugerencias de habitaciones que cumplen las caracteristicas.</div>
+                  <div>Una vez realizado el filtrado anterior, en la parte inferior del filtro se pueden ver las sugerencias de habitaciones que cumplen con las caracteristicas.</div>
                 </el-collapse-item>
                 <el-collapse-item title="Reservas" name="3">
                   <div>Ésta es la ventana para la realización de una reserva</div>
