@@ -137,6 +137,7 @@ export default {
                         this.dataAlert = "Habitaciones a reservar:";
                         this.postRooms = [];
                         this.postDates = [];
+                        this.showButton = false;
                     })
                     .catch(error => this.$notify.error({
                         title: "Error",
