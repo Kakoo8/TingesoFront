@@ -10,7 +10,7 @@
     "axios": "^0.18.0",
     "element-ui": "^2.8.2",
     "gantt-elastic": "^1.0.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
     "vue-scroll-sync": "^1.0.5"
